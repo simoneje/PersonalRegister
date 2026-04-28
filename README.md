@@ -1,4 +1,5 @@
 --------------------UPPGIFT-------------------------
+
 Ett litet företag i restaurangbranschen kontaktar dig för att utveckla ett litet
 personalregister. De har endast två krav:
 1.
@@ -12,6 +13,7 @@ Uppgift 2
 Vilka attribut och metoder bör ingå i dessa klasser?
 
 --------------------SVAR-------------------------
+
 Uppgift 1
 - Jag försöker tänka med ett framtidssäkert tänk när jag bygger upp klasserna. Det kan leda till att jag lägger till fler tankar här i efterhand när jag börjar göra programmet. 
 Jag ska göra en klass för varje individuell personal.
