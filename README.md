@@ -27,3 +27,7 @@ Uppgift 2
 	- Lön
 - PersonalRegister
 	- Dictionary av Personklasser, Key = ID, Value = PersonKlass
+    - Metoder()
+    	- setEmployee
+     - 	- checkRegisterName()
+        - getEmployee()
