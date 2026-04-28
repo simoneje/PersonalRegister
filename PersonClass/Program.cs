@@ -21,47 +21,58 @@ namespace PersonalRegister
             };
             register.setEmployee(employee1);
             register.setEmployee(employee2);
-            Console.Clear();
-            Console.WriteLine("Välkommen till Personal Registret!");
-            Console.WriteLine("Vänligen välj ett alternativ.\n1. Lägg till en ny anställd\n2. Öppna personal registret");
-            try
+            
+            
+            bool loop = true;
+            while (loop)
             {
-                var choice = int.Parse(Console.ReadLine());
-                switch (choice)
+                try
                 {
-                    case 1:
-                        Console.WriteLine("Namn: ");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Lön (hela siffror endast): ");
-                        int salary = int.Parse(Console.ReadLine());
-                        DateTime date = DateTime.Now;
-                        Employee employee = new Employee()
-                        {
-                            Name = name,
-                            Salary = salary,
-                            EmploymentDate = date
-                        };
-                        register.setEmployee(employee);
-                        break;
-                    case 2:
-                        register.checkRegisterName();
-                        Console.WriteLine("Skriv in ID på den du vill veta mer om eller tryck 0 för att gå tillbaka");
-                        int choice2 = int.Parse(Console.ReadLine());
-                        if (choice2 == 0)
+                    Console.WriteLine("\nVälkommen till Personal Registret!");
+                    Console.WriteLine("Vänligen välj ett alternativ.\n1. Lägg till en ny anställd\n2. Öppna personal registret\nVälj en annan tangent för att stänga..");
+                    var choice = int.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Namn: ");
+                            string name = Console.ReadLine();
+                            Console.WriteLine("Lön (hela siffror endast): ");
+                            int salary = int.Parse(Console.ReadLine());
+                            DateTime date = DateTime.Now;
+                            Employee employee = new Employee()
+                            {
+                                Name = name,
+                                Salary = salary,
+                                EmploymentDate = date
+                            };
+                            register.setEmployee(employee);
                             break;
-                        else
-                        {
-                            register.getEmployee(choice2);
+                        case 2:
+                            register.checkRegisterName();
+                            Console.WriteLine("Skriv in ID på den du vill veta mer om eller tryck 0 för att gå tillbaka");
+                            int choice2 = int.Parse(Console.ReadLine());
+                            if (choice2 == 0)
+                                break;
+                            else
+                            {
+                                register.getEmployee(choice2);
+                                Console.ReadLine();
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("Hej då");
+                            loop = false;
+                            break;
                         }
-                        break;
+                    }
+                catch (Exception er)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Oj oj, något gick fel!");
+                    Console.WriteLine(er);
                 }
             }
-            catch(Exception er)
-            {
-                Console.Clear();
-                Console.WriteLine("Oj oj, något gick fel!");
-                Console.WriteLine(er);
-            }
+            
         }
     }
     class Employee
@@ -94,15 +105,17 @@ namespace PersonalRegister
         {
             foreach (var kvp in employeeRegister)
             {
-                if (id == kvp.Key)
+                if (id > employeeRegister.Count)
+                {
+                    Console.WriteLine("Angiven individ hittas inte i registret");
+                    break;
+                }
+                else if (id == kvp.Key)
                 {
                     Console.WriteLine("Namn: " + kvp.Value.Name + "\nLön: " + kvp.Value.Salary + "\nStart Datum: " + kvp.Value.EmploymentDate);
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("Angiven individ hittas inte i registret");
-                }
+                
             }
         }
     }
