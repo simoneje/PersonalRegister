@@ -19,8 +19,8 @@ namespace PersonalRegister
                 Salary = 60000,
                 EmploymentDate = DateTime.Now
             };
-            register.addEmployee(employee1);
-            register.addEmployee(employee2);
+            register.setEmployee(employee1);
+            register.setEmployee(employee2);
             Console.Clear();
             Console.WriteLine("Välkommen till Personal Registret!");
             Console.WriteLine("Vänligen välj ett alternativ.\n1. Lägg till en ny anställd\n2. Öppna personal registret");
@@ -41,7 +41,7 @@ namespace PersonalRegister
                             Salary = salary,
                             EmploymentDate = date
                         };
-                        register.addEmployee(employee);
+                        register.setEmployee(employee);
                         break;
                     case 2:
                         register.checkRegisterName();
@@ -51,7 +51,7 @@ namespace PersonalRegister
                             break;
                         else
                         {
-                            register.checkRegisterSalary(choice2);
+                            register.getEmployee(choice2);
                         }
                         break;
                 }
@@ -76,7 +76,7 @@ namespace PersonalRegister
         public Dictionary<int, Employee> employeeRegister = new Dictionary<int, Employee>();
         // nextid är en intern variabel för klassen
         private int NextId = 1;
-        public void addEmployee(Employee emp)
+        public void setEmployee(Employee emp)
         {
             employeeRegister.Add(NextId, emp);
             NextId++;
@@ -90,7 +90,7 @@ namespace PersonalRegister
                 Console.WriteLine(kvp.Key + ". " + kvp.Value.Name);
             }
         }
-        public void checkRegisterSalary(int id)
+        public void getEmployee(int id)
         {
             foreach (var kvp in employeeRegister)
             {
